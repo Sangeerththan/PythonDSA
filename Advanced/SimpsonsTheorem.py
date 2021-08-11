@@ -21,5 +21,5 @@ def f(x):
 a = 0.1
 b = np.pi
 
-approxIntegral = simpsonsTheorem(f, a, b, 10)
+approxIntegral = simpsonsTheorem(f, a, b, 10000)
 print(approxIntegral)
