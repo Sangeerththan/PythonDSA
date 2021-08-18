@@ -1,10 +1,10 @@
 # pip3 install pytube
-import requests
 # Todo: download non you tube video
-import pytube
-import time
 import datetime
-import os, sys
+import os
+import time
+
+import pytube
 import wget
 
 from FileOperations import move_files, progress_function
@@ -47,7 +47,7 @@ def download_videos(_links, youtube=False):
 
 
 # Downloading the links
-download_videos(links,True)
+download_videos(links, True)
 
 # check whether directory is present
 if not os.path.exists(movingDirectory):

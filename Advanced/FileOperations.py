@@ -1,7 +1,6 @@
 import os
 import shutil
 import sys
-import requests
 
 
 def move_files(src, destination):
