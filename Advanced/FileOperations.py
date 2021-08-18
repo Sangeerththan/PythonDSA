@@ -1,5 +1,7 @@
 import shutil
-import os
+import os, sys
+
+from typing.io import BinaryIO
 
 
 def move_files(src, destination):
@@ -11,3 +13,13 @@ def move_files(src, destination):
             print(("Moving file " + str(f)).center(70, "#"))
             print(file_path)
             shutil.move(file_path, destination)
+
+
+# Display a download progress bar
+def progress_function(stream, _chunk, bytes_remaining):
+    current = ((stream.filesize - bytes_remaining) / stream.filesize)
+    percent = '{0:.1f}'.format(current * 100)
+    progress = int(50 * current)
+    status = '█' * progress + '-' * (50 - progress)
+    sys.stdout.write(' ↳ |{bar}| {percent}%\r'.format(bar=status, percent=percent))
+    sys.stdout.flush()

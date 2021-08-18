@@ -5,22 +5,23 @@ import time
 import datetime
 import os
 
-from FileOperations import move_files
+from FileOperations import move_files, progress_function
 
 links = [
-    "https://www.youtube.com/watch?v=Fg3R5QU5jJE",
-    "https://www.youtube.com/watch?v=a73eydgJkMo"
+    "https://www.youtube.com/watch?v=d0EPywzVWj0",
+    "https://www.youtube.com/watch?v=Ruc6IPY9jQE"
 ]
 destination = "/home/sangee/Videos"
-movingDirectory = "/home/sangee/Videos/ArjunSongs"
+movingDirectory = "/home/sangee/Videos/songsToCheckProgress"
 
 
 def download_videos(youtube_links):
     resolutions = ["1080p", "720p", "480p", "360p"]
     for link in youtube_links:
-        yt = pytube.YouTube(link)
+        yt = pytube.YouTube(link, on_progress_callback=progress_function)
+        yt.register_on_progress_callback(progress_function)
         for resolution in resolutions:
-            stream = yt.streams.filter(res=resolution).first()
+            stream = yt.streams.filter(progressive=True, res=resolution).first()
             if stream is not None:
                 break;
         start_time = time.time();
@@ -42,7 +43,6 @@ download_videos(links)
 if not os.path.exists(movingDirectory):
     os.makedirs(movingDirectory)
 
-
-print(("Files are copied from "+destination+" to "+movingDirectory).center(70, "*"))
+print(("Files are copied from " + destination + " to " + movingDirectory).center(70, "*"))
 # moving downloads to directory
 move_files(destination, movingDirectory)
