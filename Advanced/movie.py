@@ -3,13 +3,15 @@
 import pytube
 import time
 import datetime
+import shutil
+import os
 
-links=["https://www.youtube.com/watch?v=El57t0Dc1Ig", 
-      "https://www.youtube.com/watch?v=n8YgQfUeKe0",
-      "https://www.youtube.com/watch?v=l5PD4_Uy-00&list=RDMM&start_radio=1&rv=n8YgQfUeKe0",
-      "https://www.youtube.com/watch?v=IShvgCm8JdM&list=RDMM&index=3"
+links=[
+      "https://www.youtube.com/watch?v=yZvFH7B6gKI",
+      "https://www.youtube.com/watch?v=_XbttSk3ALs"
       ]
 destination = "/home/sangee/Videos"
+movingDirectory = "/home/sangee/DatasAnalytics"
 
 def downloadVideos(links):
     resolutions = ["1080p", "720p", "480p", "360p"]
@@ -29,4 +31,24 @@ def downloadVideos(links):
         interval = finishTime-startTime
         duration = str(round(interval/60,3)) +" Minutes " +str(round(interval%60,3))+ " Seconds"
         print(("Time taken for downloading "+link+" is "+duration).center(50,"*"))
+
+def movedownloads(src, dest):
+    files = os.listdir(src)
+    for f in files:
+        filePath = os.path.join(src, f)
+        print(("copying file"+str(f)).center(70,"#"))
+        if os.path.isfile(filePath) and os.path.isdir(dest):
+            print(("Moving file"+str(f)).center(70,"#"))    
+            print(filePath)       
+            shutil.move(filePath, dest)
+
+
+#Downlaoding the links
 downloadVideos(links)
+
+#check whether directory is present
+if not os.path.isdir(movingDirectory):
+    os.makedirs(movingDirectory)
+
+#moving downloads to directory
+movedownloads(destination, movingDirectory)
