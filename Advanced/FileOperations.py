@@ -1,7 +1,7 @@
+import os
 import shutil
-import os, sys
-
-from typing.io import BinaryIO
+import sys
+import requests
 
 
 def move_files(src, destination):
