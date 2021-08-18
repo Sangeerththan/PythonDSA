@@ -13,10 +13,10 @@ def downloadVideos(links):
         stream = yt.streams.filter(res="1080p").first()
         startTime = time.time();
         print("Start Time for Download Link "+link+" "+str(datetime.datetime.now()))
-        print("download Started "+link)
+        print("Download Started "+link)
         stream.download(output_path = destination)
         finishTime = time.time();
-        print("download finished "+link)
-        print("Start Time for Download Link "+link+" "+str(datetime.datetime.now()))
-        print("Time tken for downlaoding "+link+" is "+str(startTime - finishTime))
+        print("Download finished "+link)
+        print("Finish Time for Download Link "+link+" "+str(datetime.datetime.now()))
+        print("Time taken for downloading "+link+" is "+str(finishTime-startTime))
 downloadVideos(links)
