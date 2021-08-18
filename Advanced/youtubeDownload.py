@@ -8,11 +8,11 @@ import os
 from FileOperations import move_files
 
 links = [
-    "https://www.youtube.com/watch?v=yZvFH7B6gKI",
-    "https://www.youtube.com/watch?v=_XbttSk3ALs"
+    "https://www.youtube.com/watch?v=Fg3R5QU5jJE",
+    "https://www.youtube.com/watch?v=a73eydgJkMo"
 ]
 destination = "/home/sangee/Videos"
-movingDirectory = "/home/sangee/Videos/DataAnalytics"
+movingDirectory = "/home/sangee/Videos/ArjunSongs"
 
 
 def download_videos(youtube_links):
@@ -41,6 +41,8 @@ download_videos(links)
 # check whether directory is present
 if not os.path.exists(movingDirectory):
     os.makedirs(movingDirectory)
-print(movingDirectory)
+
+
+print(("Files are copied from "+destination+" to "+movingDirectory).center(70, "*"))
 # moving downloads to directory
 move_files(destination, movingDirectory)
