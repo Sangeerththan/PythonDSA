@@ -4,7 +4,11 @@ import pytube
 import time
 import datetime
 
-links=["https://www.youtube.com/watch?v=10RnRpMj9Mg", "https://www.youtube.com/watch?v=bADu51CTF8g"]
+links=["https://www.youtube.com/watch?v=El57t0Dc1Ig", 
+      "https://www.youtube.com/watch?v=n8YgQfUeKe0",
+      "https://www.youtube.com/watch?v=l5PD4_Uy-00&list=RDMM&start_radio=1&rv=n8YgQfUeKe0",
+      "https://www.youtube.com/watch?v=IShvgCm8JdM&list=RDMM&index=3"
+      ]
 destination = "/home/sangee/Videos"
 
 def downloadVideos(links):
