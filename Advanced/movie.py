@@ -11,7 +11,7 @@ links=[
       "https://www.youtube.com/watch?v=_XbttSk3ALs"
       ]
 destination = "/home/sangee/Videos"
-movingDirectory = "/home/sangee/DatasAnalytics"
+movingDirectory = "/home/sangee/Videos/Songs/Western"
 
 def downloadVideos(links):
     resolutions = ["1080p", "720p", "480p", "360p"]
@@ -43,12 +43,12 @@ def movedownloads(src, dest):
             shutil.move(filePath, dest)
 
 
-#Downlaoding the links
-downloadVideos(links)
+#Downloading the links
+# downloadVideos(links)
 
 #check whether directory is present
-if not os.path.isdir(movingDirectory):
+if not os.path.exists(movingDirectory):
     os.makedirs(movingDirectory)
-
+print(movingDirectory)
 #moving downloads to directory
 movedownloads(destination, movingDirectory)
