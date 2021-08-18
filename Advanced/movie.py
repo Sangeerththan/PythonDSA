@@ -1,8 +1,12 @@
 #pip3 install pytube
 
 import pytube
-link="https://www.youtube.com/watch?v=gR-tJhoO4i0&list=PL4QNnZJr8sRNiuUBUvMJ7b4eQJotYO2mo"
+links=["https://www.youtube.com/watch?v=KfUExOXxU5Q", "https://www.youtube.com/watch?v=fu2slipA8O4"]
 destination = "/home/sangee/Videos"
-yt = pytube.YouTube(link)
-stream = yt.streams.first()
-stream.download(output_path = destination)
+
+def downloadVideos(links):
+    for link in links:
+        yt = pytube.YouTube(link)
+        stream = yt.streams.first()
+        stream.download(output_path = destination)
+downloadVideos(links)
