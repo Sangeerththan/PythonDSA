@@ -1,6 +1,6 @@
 # sudo apt install bluetooth libbluetooth-dev
 # pip3 install pybluez
-
+# Reference: http://blog.kevindoran.co/bluetooth-programming-with-python-3/
 # !/usr/bin/python3
 
 # geektechstuff bluetooth
