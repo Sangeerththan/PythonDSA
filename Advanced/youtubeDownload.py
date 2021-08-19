@@ -4,16 +4,19 @@ import datetime
 import os
 import time
 
+import pyperclip
 import pytube
 import wget
+import re
 
 from FileOperations import move_files, progress_function
 
-links = [
-    "https://www.youtube.com/watch?v=094y1Z2wpJg"
-]
+links = []
 destination = "/home/sangee/Videos"
-movingDirectory = "/home/sangee/Videos/Test"
+movingDirectory = "/home/sangee/Videos/Projects/Java"
+
+
+# movingDirectory = "/home/sangee/Videos/Projects/Python"
 
 
 def download_videos(_links, youtube=False):
@@ -46,13 +49,31 @@ def download_videos(_links, youtube=False):
             print("Finished Downloading Non Youtube File".center(70, "*"))
 
 
-# Downloading the links
-download_videos(links, True)
+def main():
+    youtube_regex = re.compile(r'''(http:|https:)?\/\/(www\.)?(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?
+    ''', re.VERBOSE)
+    # Downloading without duplicated links
+    download_limit = int(input("Enter links count: "))
+    while True:
+        copied_link = str(pyperclip.paste())
+        # print("youtube regex is:"+str(youtube_regex.findall(copied_link)))
+        match = youtube_regex.match(copied_link)
+        if match is not None:
+            print(copied_link)
+            links.append(copied_link)
+        if len(links) >= download_limit:
+            break
+    unique_links = list(set(links))
+    download_videos(unique_links, True)
 
-# check whether directory is present
-if not os.path.exists(movingDirectory):
-    os.makedirs(movingDirectory)
+    # check whether directory is present
+    if not os.path.exists(movingDirectory):
+        os.makedirs(movingDirectory)
 
-print(("Files are copied from " + destination + " to " + movingDirectory).center(70, "*"))
-# moving downloads to directory
-move_files(destination, movingDirectory)
+    print(("Files are copied from " + destination + " to " + movingDirectory).center(70, "*"))
+    # moving downloads to directory
+    move_files(destination, movingDirectory)
+
+
+if __name__ == '__main__':
+    main()
