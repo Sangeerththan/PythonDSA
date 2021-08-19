@@ -13,7 +13,7 @@ from FileOperations import move_files, progress_function
 
 links = []
 destination = "/home/sangee/Videos"
-movingDirectory = "/home/sangee/Videos/Projects/Java"
+movingDirectory = "/home/sangee/Videos/Movies/Scientific"
 
 
 # movingDirectory = "/home/sangee/Videos/Projects/Python"
@@ -52,18 +52,19 @@ def download_videos(_links, youtube=False):
 def main():
     youtube_regex = re.compile(r'''(http:|https:)?\/\/(www\.)?(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?
     ''', re.VERBOSE)
-    # Downloading without duplicated links
+
+    # Downloading limit of links
     download_limit = int(input("Enter links count: "))
     while True:
         copied_link = str(pyperclip.paste())
         # print("youtube regex is:"+str(youtube_regex.findall(copied_link)))
         match = youtube_regex.match(copied_link)
         if match is not None:
-            print(copied_link)
             links.append(copied_link)
-        if len(links) >= download_limit:
+        if len(set(links)) >= download_limit:
             break
     unique_links = list(set(links))
+    print("Download Links are"+str(unique_links))
     download_videos(unique_links, True)
 
     # check whether directory is present
