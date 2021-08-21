@@ -1,4 +1,4 @@
-# pip3 install pytube
+# pip3 install pytube pyperclip wget
 # Todo: download non you tube video
 import datetime
 import os
@@ -13,7 +13,7 @@ from FileOperations import move_files, progress_function
 
 links = []
 destination = "/home/sangee/Videos"
-movingDirectory = "/home/sangee/Videos/Projects/Python"
+movingDirectory = "/home/sangee/Videos/CuttingEdge/TensorFlow/Projects"
 
 
 def download_videos(_links, youtube=False):
