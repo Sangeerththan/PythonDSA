@@ -18,20 +18,12 @@ import sys
 
 def repeatedString(s, n):
     # Write your code here
-    count = 0;
-    occurence = 0
     if set(s) == {'a'}:
         return n
     else:
-        for character in s:
-            if (character == 'a'):
-                count += 1
-        print(count)
-        occurence = count * (n // len(s))
-        for character in s[-(n % len(s)):]:
-            if (character == 'a'):
-                count += 1
-                occurence += 1
+        repetition = s.count('a')
+        occurence = repetition * (n // len(s))
+        occurence += s[:n % len(s)].count("a")
         return occurence
 
 
