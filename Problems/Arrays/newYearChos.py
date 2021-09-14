@@ -16,14 +16,17 @@ import sys
 def minimumBribes(q):
     # Write your code here
     bribe = 0
-    for i in range(len(q) - 1):
-        if (q[i] > q[i + 1]):
-            succesive_bribe = q[i] - q[i + 1]
-            if succesive_bribe > 2:
-                print("Too chaotic")
-                return
-            else:
-                bribe += succesive_bribe
+    n = len(q)
+    for i in range(n - 1, 0, -1):
+        if q[i - 1] - q[i] > 2:
+            print("Too chaotic")
+            return
+        else:
+            j = max(0, q[i] - 2)
+            while j < i:
+                if q[j] > q[i]:
+                    bribe += 1
+                j += 1
     print(bribe)
 
 
