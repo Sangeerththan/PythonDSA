@@ -1,8 +1,11 @@
-# return nth Newman–Shanks–Williams prime
 def nswp(n):
-    if n == 0 or n == 1:
-        return 1
-    return 2 * nswp(n - 1) + nswp(n - 2)
+    if (n < 2): return 1
+    a, b = 1, 1
+    for i in range(2, n + 1):
+        c = 2 * b + a
+        a = b
+        b = c
+    return b
 
 
 n = 3
