@@ -6,8 +6,10 @@ class Graph:
         self.V = vertices
         self.graph = defaultdict(list)
         self.tc = [[0 for j in range(self.V)] for i in range(self.V)]
+
     def addEdge(self, u, v):
         self.graph[u].append(v)
+
     def DFSUtil(self, s, v):
         if (s == v):
             if (v in self.graph[s]):
